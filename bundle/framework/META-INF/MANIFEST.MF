@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1374431913290
+Build-Jdk: 1.6.0_37
+Built-By: jsundar
+Bundle-ManifestVersion: 2
+Bundle-Name: framework.proxy
+Bundle-SymbolicName: framework.proxy
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: *
+Export-Package: org.virtusa.framework.api;version="1.0.0"
+Tool: Bnd-1.50.0

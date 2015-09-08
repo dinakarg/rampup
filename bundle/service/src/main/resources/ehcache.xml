@@ -1,0 +1,83 @@
+<ehcache> 
+  <diskStore path="java.io.tmpdir"/> 
+  <defaultCache 
+     maxEntriesLocalHeap="10000" 
+     eternal="false" 
+     timeToIdleSeconds="120" 
+     timeToLiveSeconds="120" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="120" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="localTempSwap"/> 
+  </defaultCache>
+  <cache name="featuredNewsCache" 
+     maxEntriesLocalHeap="2000" 
+     eternal="false" 
+     timeToIdleSeconds="600" 
+     timeToLiveSeconds="600" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="600" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache>  
+  <cache name="transformedImageCache" 
+     maxEntriesLocalHeap="2000" 
+     eternal="false" 
+     timeToIdleSeconds="6000" 
+     timeToLiveSeconds="6000" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="6000" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache> 
+  <cache name="latestNewsCache" 
+     maxEntriesLocalHeap="2000" 
+     eternal="false" 
+     timeToIdleSeconds="6000" 
+     timeToLiveSeconds="6000" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="6000" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache>
+  <cache name="authorsCache" 
+     maxEntriesLocalHeap="5" 
+     eternal="false" 
+     timeToIdleSeconds="6000" 
+     timeToLiveSeconds="6000" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="6000" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache>    
+  <cache name="sectionsCache" 
+     maxEntriesLocalHeap="200" 
+     eternal="false" 
+     timeToIdleSeconds="6000" 
+     timeToLiveSeconds="6000" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="6000" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache>    
+  <cache name="sitesCache" 
+     maxEntriesLocalHeap="5" 
+     eternal="false" 
+     timeToIdleSeconds="6000" 
+     timeToLiveSeconds="6000" 
+     maxEntriesLocalDisk="10000000" 
+     diskExpiryThreadIntervalSeconds="6000" 
+     memoryStoreEvictionPolicy="LRU"> 
+     <persistence strategy="none"/> 
+  </cache>
+    <cache name="jobGoInfoCache"
+           maxEntriesLocalHeap="5"
+           eternal="false"
+           timeToIdleSeconds="6000"
+           timeToLiveSeconds="6000"
+           maxEntriesLocalDisk="10000000"
+           diskExpiryThreadIntervalSeconds="6000"
+           memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="none"/>
+    </cache>
+</ehcache>

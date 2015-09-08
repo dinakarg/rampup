@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Page"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[cq.common.wcm,cq.siteadmin.admin.properties]"
+    mode="edit">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <columns
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <thumbnail
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/common/wcm/pagethumbnail"
+                        page="${empty param.item ? requestPathInfo.suffix : param.item}">
+                        <upload
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/fileupload"
+                            autoStart="{Boolean}false"
+                            cq-msm-lockable="/image"
+                            multiple="{Boolean}false"
+                            name="./image/file.sftmp"
+                            sizeLimit="100000000"
+                            title="Upload Image"
+                            uploadUrl="will_be_replaced"/>
+                        <preview
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/siteadmin/admin/pagepreview"/>
+                    </thumbnail>
+                    <tabs
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+                            type="nav"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <basic
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Basic"
+                                sling:resourceType="granite/ui/components/foundation/section">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                cq-msm-lockable="jcr:title"
+                                                fieldLabel="Title"
+                                                name="./jcr:title"
+                                                renderReadOnly="{Boolean}true"
+                                                required="{Boolean}true"/>
+                                            <msmConfigEndpoint
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                class="msm-config-endpoint"
+                                                value="${empty param.item ? requestPathInfo.suffix : param.item }"/>
+                                            <tags
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/autocomplete"
+                                                cq-msm-lockable="cq:tags"
+                                                fieldLabel="Tags"
+                                                mode="contains"
+                                                multiple="{Boolean}true"
+                                                name="./cq:tags"
+                                                renderReadOnly="{Boolean}true">
+                                                <values
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/common/autocomplete/taggingtags"/>
+                                                <options
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/form/autocomplete/list"
+                                                    namespaces="[IPTC - Media Topic]"
+                                                    src="/libs/cq/gui/content/common/tags.html{?query,start,end}&amp;namespaces=IPTC%20-%20Media%20Topic"/>
+                                            </tags>
+                                            <tagsdelete
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                ignoreData="{Boolean}true"
+                                                name="./cq:tags@Delete"
+                                                value="delete-empty"/>
+                                            <tagstype
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                ignoreData="{Boolean}true"
+                                                name="./cq:tags@TypeHint"
+                                                value="String[]"/>
+                                            <hideinnav
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                cq-msm-lockable="hideInNav"
+                                                name="./hideInNav"
+                                                renderReadOnly="{Boolean}true"
+                                                text="Hide in Navigation"
+                                                value="true"/>
+                                            <deletehideinnav
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                name="./hideInNav@Delete"
+                                                value="true"/>
+                                            <charset
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                ignoreData="{Boolean}true"
+                                                name="_charset_"
+                                                value="utf-8"/>
+                                        </items>
+                                    </title>
+                                    <moretitles
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="More Titles and Description"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <pagetitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                cq-msm-lockable="pageTitle"
+                                                fieldLabel="Page Title"
+                                                name="./pageTitle"
+                                                renderReadOnly="{Boolean}true"/>
+                                            <navigationtitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                cq-msm-lockable="navTitle"
+                                                fieldLabel="Navigation Title"
+                                                name="./navTitle"
+                                                renderReadOnly="{Boolean}true"/>
+                                            <subtitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                cq-msm-lockable="subtitle"
+                                                fieldLabel="Subtitle"
+                                                name="./subtitle"
+                                                renderReadOnly="{Boolean}true"/>
+                                            <description
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                                cq-msm-lockable="jcr:description"
+                                                fieldLabel="Description"
+                                                name="./jcr:description"
+                                                renderReadOnly="{Boolean}true"/>
+                                        </items>
+                                    </moretitles>
+                                    <onofftime
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="On/Off Time"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <ondate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/datepicker"
+                                                cq-msm-lockable="onTime"
+                                                displayedFormat="MMMM DD, YYYY hh:mm a"
+                                                fieldLabel="On Time"
+                                                name="./onTime"
+                                                renderReadOnly="{Boolean}true"
+                                                type="datetime"/>
+                                            <ondate_type
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                ignoreData="{Boolean}true"
+                                                name="./onTime@TypeHint"
+                                                value="Date"/>
+                                            <offdate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/datepicker"
+                                                cq-msm-lockable="offTime"
+                                                displayedFormat="MMMM DD, YYYY hh:mm a"
+                                                fieldLabel="Off Time"
+                                                name="./offTime"
+                                                renderReadOnly="{Boolean}true"
+                                                type="datetime"/>
+                                            <offdate_type
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                ignoreData="{Boolean}true"
+                                                name="./offTime@TypeHint"
+                                                value="Date"/>
+                                        </items>
+                                    </onofftime>
+                                    <vanityurl
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Vanity URL"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <vanitypath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/multifield"
+                                                cq-msm-lockable="sling:vanityPath"
+                                                fieldLabel="Vanity URL"
+                                                renderReadOnly="{Boolean}true">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                    name="./sling:vanityPath"
+                                                    required="{Boolean}true"/>
+                                            </vanitypath>
+                                            <redirectVanityURL
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                cq-msm-lockable="./sling:redirect"
+                                                name="./sling:redirect"
+                                                renderReadOnly="{Boolean}true"
+                                                text="Redirect Vanity URL"
+                                                value="true"/>
+                                        </items>
+                                    </vanityurl>
+                                </items>
+                            </basic>
+                            <configuration
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Configuration"
+                                sling:resourceType="granite/ui/components/foundation/section">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contractid
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="contractID"
+                                        fieldLabel="Contract ID *"
+                                        id="contract"
+                                        name="./contractID"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <ad-site-code
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="sitecode"
+                                        fieldLabel="Ad Tag *"
+                                        id="sitecode"
+                                        name="./sitecode"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <siteId
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="siteId"
+                                        fieldLabel="JobGo Site ID *"
+                                        id="siteid"
+                                        name="./siteId"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <siteUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="siteUrl"
+                                        fieldLabel="Site URL *"
+                                        id="siteUrl"
+                                        name="./siteUrl"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <careerBeaconKey
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="careerBeaconKey"
+                                        fieldLabel="Career Beacon Key *"
+                                        id="careerkey"
+                                        name="./careerBeaconKey"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"
+                                        value="c4ca4238a0b923820dcc509a6f75849b"/>
+                                    <inmemoriamsiteno
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="inmemoriamsiteno"
+                                        fieldLabel="In Memoriam Site No *"
+                                        id="immemoriam"
+                                        name="./inmemoriamsiteno"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <language
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/select"
+                                        cq-msm-lockable="language"
+                                        defaultValue="en"
+                                        fieldLabel="Language *"
+                                        name="./language"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <item0
+                                                jcr:primaryType="nt:unstructured"
+                                                text="English"
+                                                value="en"/>
+                                            <item1
+                                                jcr:primaryType="nt:unstructured"
+                                                text="French"
+                                                value="fr"/>
+                                            <item2
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Italian"
+                                                value="it"/>
+                                        </items>
+                                    </language>
+                                    <latitude
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="latitude"
+                                        fieldLabel="Latitude *"
+                                        id="latitude"
+                                        name="./latitude"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <longitude
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="longitude"
+                                        fieldLabel="Longitude *"
+                                        id="longitude"
+                                        name="./longitude"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <regionname
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/select"
+                                        class="regionName"
+                                        cq-msm-lockable="regionName"
+                                        fieldLabel="Region Name *"
+                                        name="./regionName"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="/apps/tc/components/commons/datasources/regionnames"/>
+                                    </regionname>
+                                    <city
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="city"
+                                        fieldLabel="City *"
+                                        id="city"
+                                        name="./city"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <zipcode
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="zipcodevalue"
+                                        fieldLabel="Zip Code*"
+                                        id="zipcodevalue"
+                                        name="./zipcodevalue"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <radius
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="radius"
+                                        fieldLabel="Radius *"
+                                        id="radius"
+                                        name="./radius"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <placecode
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="placeCode"
+                                        fieldLabel="Place Code *"
+                                        id="placecode"
+                                        name="./placeCode"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <timezone
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/select"
+                                        cq-msm-lockable="timeZone"
+                                        fieldLabel="Time Zone *"
+                                        name="./timeZone"
+                                        renderReadOnly="{Boolean}true"
+                                        required="true"
+                                        value="eastern">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <eastern
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -05:00) EASTERN"
+                                                value="EST"/>
+                                            <atlantic
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -04:00) ATLANTIC"
+                                                value="Canada/Atlantic"/>
+                                            <newfoundland
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -03:30) NEWFOUNDLAND"
+                                                value="Canada/Newfoundland"/>
+                                            <central
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -06:00) CENTRAL"
+                                                value="Canada/Central"/>
+                                            <mountain
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -07:00) MOUNTAIN"
+                                                value="Canada/Mountain"/>
+                                            <pacific
+                                                jcr:primaryType="nt:unstructured"
+                                                text="(GMT -08:00) PACIFIC"
+                                                value="Canada/Pacific"/>
+                                        </items>
+                                    </timezone>
+                                    <cpfeed
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                        cq-msm-lockable="cpFeedEnabled"
+                                        id="cpfeedcheck"
+                                        name="./cpFeedEnabled"
+                                        oncpcheck="true"
+                                        renderReadOnly="{Boolean}true"
+                                        text="Subscribe to CP Feed"
+                                        value="true"/>
+                                    <deletecpfeed
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        name="./cpFeedEnabled@Delete"
+                                        value="true"/>
+                                    <publishmode
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/foundation/form/radiogroup"
+                                        class="hide"
+                                        cq-msm-lockable="publishMode"
+                                        id="enablePublishMode">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <manual
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/foundation/form/radio"
+                                                checked="{Boolean}true"
+                                                name="./publishMode"
+                                                text="Manual Publishing Mode"
+                                                value="manual"/>
+                                            <automatic
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/foundation/form/radio"
+                                                name="./publishMode"
+                                                text="Automatic Publishing Mode"
+                                                value="automatic"/>
+                                        </items>
+                                    </publishmode>
+                                    <cpfeedcategories
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/dropdown"
+                                        cq-msm-lockable="cpfeedcategories"
+                                        fieldLabel="CP Feed News Categories (applicable for Auto Publish only)"
+                                        name="./cpfeedcategories"
+                                        renderReadOnly="{Boolean}true"
+                                        type="multiple">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <national
+                                                jcr:primaryType="nt:unstructured"
+                                                text="National"
+                                                value="National"/>
+                                            <sports
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Sports"
+                                                value="Sports"/>
+                                            <world
+                                                jcr:primaryType="nt:unstructured"
+                                                text="World"
+                                                value="World"/>
+                                            <business
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Business"
+                                                value="Business"/>
+                                            <entertainment
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Entertainment"
+                                                value="Entertainment"/>
+                                            <politics
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Politics"
+                                                value="Politics"/>
+                                            <atlantic
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Atlantic"
+                                                value="Atlantic"/>
+                                            <saskatchewan
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Saskatchewan"
+                                                value="Saskatchewan"/>
+                                        </items>
+                                    </cpfeedcategories>
+                                    <isfeedsite
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                        cq-msm-lockable="isFeedSite"
+                                        name="./isFeedSite"
+                                        renderReadOnly="{Boolean}true"
+                                        text="Is Feed Site"
+                                        value="true"/>
+                                    <deleteisfeedsite
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        name="./isFeedSite@Delete"
+                                        value="true"/>
+                                    <tags
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/autocomplete"
+                                        cq-msm-lockable="publicationId"
+                                        fieldLabel="Publication ID *"
+                                        mode="contains"
+                                        multiple="{Boolean}true"
+                                        name="./publicationId"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/common/datasources/tags"
+                                            namespaces="[Publications]"/>
+                                        <values
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/autocomplete/tags"/>
+                                        <options
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/autocomplete/list"/>
+                                    </tags>
+                                    <tagsdelete
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        ignoreData="{Boolean}true"
+                                        name="./publicationId@Delete"
+                                        value="delete-empty"/>
+                                    <tagstype
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        ignoreData="{Boolean}true"
+                                        name="./publicationId@TypeHint"
+                                        value="String[]"/>
+                                    <videoUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        alertMsg="URL must start with http:// or https:// and should not have spaces"
+                                        allowUrl="./allowUrl"
+                                        cq-msm-lockable="videoUrl"
+                                        fieldLabel="Video URL Path *"
+                                        name="./videoUrl"
+                                        renderReadOnly="{Boolean}true"
+                                        required="true"/>
+                                    <videoPlayerId
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="videoPlayerId"
+                                        fieldLabel="Video Player ID *"
+                                        id="videoPlayerId"
+                                        name="./videoPlayerId"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <videoPlayerKey
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="videoPlayerKey"
+                                        fieldLabel="Video Player Key *"
+                                        id="videoPlayerKey"
+                                        name="./videoPlayerKey"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <autorizedGroup
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="autorizedGroup"
+                                        fieldLabel="Section Authorized Group"
+                                        id="autorizedGroup"
+                                        name="./autorizedGroup"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}false"/>
+                                    <queryLimit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="queryLimit"
+                                        fieldLabel="Query Limit for Components"
+                                        id="queryLimit"
+                                        name="./queryLimit"
+                                        renderReadOnly="{Boolean}true"
+                                        value="30"/>
+                                </items>
+                            </configuration>
+                            <global
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Global"
+                                sling:resourceType="granite/ui/components/foundation/section">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <websiteLogoPath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="websiteLogoPath"
+                                        fieldLabel="Website Logo Path*"
+                                        name="./websiteLogoPath"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"
+                                        rootPath="/content/dam/tc/websitelogos"/>
+                                    <fbUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="fbUrl"
+                                        fieldLabel="FB URL"
+                                        name="./fbUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <twitterUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="twitterUrl"
+                                        fieldLabel="Twitter URL"
+                                        name="./twitterUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <g_x002b_Url
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="g+Url"
+                                        fieldLabel="G+ URL"
+                                        name="./g+Url"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <youTubeUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="youTubeUrl"
+                                        fieldLabel="YouTube URL"
+                                        name="./youTubeUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <linkedinUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="linkedinUrl"
+                                        fieldLabel="LinkedIn URL"
+                                        name="./linkedinUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <webCamImagePath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="webCamImagePath"
+                                        fieldLabel="Web Cam Image Path"
+                                        name="./webCamImagePath"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <webCamImageAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="webCamImageAltText"
+                                        fieldLabel="Web Cam Image Alt Text"
+                                        name="./webCamImageAltText"
+                                        renderReadOnly="{Boolean}true"
+                                        value="Not visible"/>
+                                    <webCamUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="webCamUrl"
+                                        fieldLabel="Web Cam URL"
+                                        name="./webCamUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <corporateLogoPath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="corporateLogoPath"
+                                        fieldLabel="Corporate Logo Path"
+                                        name="./corporateLogoPath"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <corporateLogoLinkUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="corporateLogoLinkUrl"
+                                        fieldLabel="Corporate Logo Link URL"
+                                        name="./corporateLogoLinkUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <copyright
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="copyright"
+                                        fieldLabel="Copyright *"
+                                        name="./copyright"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <companyAddress
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                        cq-msm-lockable="companyAddress"
+                                        fieldLabel="Company Address"
+                                        name="./companyAddress"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <contactUsLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="contactUsLink"
+                                        fieldLabel="ContactUs Link"
+                                        name="./contactUsLink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <privacyPolicyPageLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="privacyPolicyPageLink"
+                                        fieldLabel="Privacy Policy Page Link"
+                                        name="./privacyPolicyPageLink"
+                                        renderReadOnly="{Boolean}true"
+                                        value="http://tctranscontinental.com/privacy-policy"/>
+                                    <usePolicyPageLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="usePolicyPageLink"
+                                        fieldLabel="Use Policy Page Link"
+                                        name="./usePolicyPageLink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <activatepressplus
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                        cq-msm-lockable="activatePressPlus"
+                                        fieldDescription="Check to activate Perss+"
+                                        id="activatePressPlus"
+                                        name="./activatePressPlus"
+                                        onCheck="activatePressPlus"
+                                        renderReadOnly="{Boolean}true"
+                                        text="Activate Press+"
+                                        value="true"/>
+                                    <deleteactivatepressplus
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        name="./activatePressPlus@Delete"
+                                        value="true"/>
+                                    <pressplusaccountid
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        checkField="true"
+                                        cq-msm-lockable="pressPlusAccountID"
+                                        fieldDescription="Enter Press+ Account ID for site."
+                                        fieldLabel="Press+ Account ID"
+                                        id="pressPlusAccountID"
+                                        name="./pressPlusAccountID"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}false"/>
+                                    <pressPlusImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="pressPlusImage"
+                                        fieldDescription="Image size: 380px X 160px"
+                                        fieldLabel="Header Top-Left Image"
+                                        name="./pressPlusImage"
+                                        renderReadOnly="{Boolean}true"
+                                        rootPath="/content/dam/tc"/>
+                                    <pressPlusImageUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="pressPlusImageUrl"
+                                        fieldDescription="URL must start with http:// or https://"
+                                        fieldLabel="Header Top-Left Image URL"
+                                        name="./pressPlusImageUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <pressPlusImageUrlNewWindow
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                        cq-msm-lockable="pressPlusImageNewWindow"
+                                        id="pressPlusImageNewWindow"
+                                        name="./pressPlusImageNewWindow"
+                                        onCheck="pressPlusImageNewWindow"
+                                        renderReadOnly="{Boolean}true"
+                                        text="New window ?"
+                                        value="true"/>
+                                    <pressPlusImageNewWindowDelete
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        name="./pressPlusImageNewWindow@Delete"
+                                        value="true"/>
+                                    <pressPlusLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="pressPlusLabel"
+                                        fieldDescription="Maximum length: 30 characters"
+                                        fieldLabel="Header Top-Left Text"
+                                        name="./pressPlusLabel"
+                                        renderReadOnly="{Boolean}true"
+                                        rootPath="/content/dam/tc"/>
+                                    <pressPlusLabelUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="pressPlusLabelUrl"
+                                        fieldDescription="URL must start with http:// or https://"
+                                        fieldLabel="Header Top-Left Text URL"
+                                        name="./pressPlusLabelUrl"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <pressPlusLabelNewWindow
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                        cq-msm-lockable="pressPlusLabelNewWindow"
+                                        id="pressPlusLabelNewWindow"
+                                        name="./pressPlusLabelNewWindow"
+                                        onCheck="pressPlusLabelNewWindow"
+                                        renderReadOnly="{Boolean}true"
+                                        text="New window ?"
+                                        value="true"/>
+                                    <pressPlusLabelNewWindowDelete
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                        name="./pressPlusLabelNewWindow@Delete"
+                                        value="true"/>
+                                    <contactus-email
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="contactUsEmail"
+                                        emailformat="{Boolean}true"
+                                        fieldLabel="Contact Us Email*"
+                                        name="./contactUsEmail"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"/>
+                                    <newsletterCorporateLogoPath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="newsletterCorporateLogoPath"
+                                        fieldLabel="Newsletter Corporate Logo "
+                                        name="./newsletterCorporateLogoPath"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <getournewsletterlink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        class="newsletterlink"
+                                        cq-msm-lockable="newsletterSubscriptionLink"
+                                        fieldDescription="External URL must start with http:// or https://"
+                                        fieldLabel="Get Our Newsletter Link"
+                                        name="./newsletterSubscriptionLink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <classifiedsLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="classifiedslink"
+                                        fieldLabel="Classifieds Link"
+                                        name="./classifiedslink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <autoGoLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="autogolink"
+                                        fieldLabel="AutoGo Link"
+                                        name="./autogolink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <jobsLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="jobslink"
+                                        fieldLabel="JobGo Link"
+                                        name="./jobslink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <obituariesLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="obituarieslink"
+                                        fieldLabel="In Memoriam Link"
+                                        name="./obituarieslink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <dealsLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        cq-msm-lockable="dealslink"
+                                        fieldLabel="Promotion Deals Link"
+                                        name="./dealslink"
+                                        renderReadOnly="{Boolean}true"/>
+                                    <faviconPath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                        cq-msm-lockable="faviconPath"
+                                        fieldLabel="Favicon Path*"
+                                        name="./faviconPath"
+                                        renderReadOnly="{Boolean}true"
+                                        required="{Boolean}true"
+                                        rootPath="/content/dam/tc/websitelogos"/>
+                                </items>
+                            </global>
+                        </items>
+                    </tabs>
+                </items>
+            </columns>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>FileVault Package Properties</comment>
+<entry key="createdBy">admin</entry>
+<entry key="name">@packageName@</entry>
+<entry key="dependencies"/>
+<entry key="group">@organizationName@</entry>
+<entry key="description"/>
+<entry key="lastWrappedBy">admin</entry>
+</properties>

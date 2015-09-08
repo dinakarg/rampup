@@ -1,0 +1,15 @@
+
+@media screen and (max-width:768px)
+{
+	#wrapper{
+		width:100%;
+		margin:0;
+		padding:0 10px;
+		background-color:#fff;
+	}
+    .ad_leaderboard {
+
+        width: 100%;
+    }
+
+}

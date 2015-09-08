@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/ndtv"/>
+    <filter root="/apps/sling"/>
+	<filter root="/apps/foundation"/>
+    <filter root="/apps/daycare/config"/>
+
+
+    <filter root="/apps/dam"/>
+    <filter root="/apps/cq"/>
+    <filter root="/apps/wcm"/>
+    <filter root="/etc/designs/ndtv"/>
+    <filter root="/etc/designs/default" mode="update"/>
+    <filter root="/etc/scaffolding"/>
+    <filter root="/etc/tags/ndtv"/>
+    <!--<filter root="/etc/tags/Regions"/>-->
+    <!--<filter root="/etc/tags/Group"/>-->
+    <!--<filter root="/etc/tags/Province"/>-->
+	<!--<filter root="/etc/tags/Site"/>-->
+	<!--<filter root="/etc/tags/Publications"/>-->
+	<filter root="/etc/tags/Category"/>
+	<filter root="/etc/tags/contract_unit"/>
+	<filter root="/etc/tags/job_minimum_education_required"/>
+	<filter root="/etc/tags/job_position_start_date"/>
+	<filter root="/etc/tags/job_position_type"/>
+	<filter root="/etc/tags/job_salary_pay_by"/>
+	<filter root="/etc/tags/PositionCity"/>
+    <filter root="/etc/appsconfig/tc"/>
+    <filter root="/etc/clientlibs/ndtv"/>
+    <filter root="/etc/assets"/>
+    <filter root="/etc/cloudservices/facebookconnect/tcfbconnect"/>
+    <filter root="/etc/segmentation/tc"/>
+    <filter root="/etc/clientlibs/brightcove"/>
+    <filter root="/libs/cq/gui/content/common/links/brightcove"/>
+    <filter root="/etc/designs/cs/brightcove">
+        <exclude pattern="/etc/designs/cs/brightcove/jcr:content.*"/>
+    </filter>
+	<filter root="/etc/msm/rolloutconfigs/tc-media-rollout-config" mode="merge"/>
+	<filter root="/etc/blueprints/tc-english-media" mode="merge"/>
+	<filter root="/etc/blueprints/tc-french-media" mode="merge"/>
+	<filter root="/etc/blueprints/tc-italian-media" mode="merge"/>	
+	<filter root="/etc/workflow/launcher/config/331393868" mode="merge"/>
+	<filter root="/etc/workflow/models/pdftojpegs" mode="merge"/>
+	<filter root="/etc/workflow/models/dam/update_asset" mode="merge"/>
+
+</workspaceFilter>

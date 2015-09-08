@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Slideshow
+   ========================================================================== */  
+
+#gallery-1.article.rsDefault .rsGCaption {
+  background: none repeat 0 0 #1A1A1A!important;
+  font-size: 14px!important;
+  position: static!important;
+  color:#B2B2B2;
+}
+#gallery-1.article.rsDefault .rsThumbsHor {
+  margin: 17px 10px 9px!important;
+  width: 97%!important;
+  padding-bottom:2px;
+}
+#gallery-1.article.rsDefault .rsThumbsArrow {
+  height: 71px!important;
+  width: 24px!important;
+}
+#gallery-1.article.rsDefault .rsGCaption {
+  padding: 2px 20px 17px !important
+}
+#gallery-1.rsDefault .rsThumb {
+	width:88px!important;
+}
+#gallery-container {
+  float: left;
+  height: auto !important;
+}
+a.rsImg{
+  display:none;
+}
+.rsDefault .rsArrowIcn {
+  background-image: url(../images/sprite.png) !important;
+  background-color: #fff!important;
+  background-color: rgba(255,255,255,0.75) !important;
+  *background-color: #fff!important;
+}
+.rsDefault.rsHor .rsArrowLeft .rsArrowIcn {
+  background-position: -163px -188px!important;
+}
+.rsDefault.rsHor .rsArrowRight .rsArrowIcn {
+  background-position: -111px -188px!important;
+}
+.rsDefault.rsVer .rsArrowLeft .rsArrowIcn {
+  background-position: -163px -188px!important;
+}
+.rsDefault.rsVer .rsArrowRight .rsArrowIcn {
+  background-position: -111px -188px!important;
+}  
+.ui-widget-overlay {
+  background:none #1A1A1A;
+ }
+.rsDefault .rsGCaption {
+	float:left !important;
+}
+.ui-widget-content {
+	border:none;
+}
+#gallery-container .container {
+	background: #1A1A1A;
+	float: left;
+	padding-top: 8px;
+}           
+#gallery-container #slideshow p {
+  margin:0;
+  font-style: normal;
+}  
+.ui-icon, .ui-widget-content .ui-icon {
+  background:url(../images/sprite.png) no-repeat 0 -112px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  height: 27px;
+  width: 27px;
+}
+/* ==========================================================================
+   Slideshow / Article
+   ========================================================================== */  
+.slideshow {
+	float:left;
+	background:#1A1A1A;
+	margin-bottom:5px;
+}
+.small-image .slideshow {
+  margin-bottom:25px;
+}
+article .slideshow #gallery-1.article.rsDefault .rsGCaption {
+	width: 610px !important;
+}
+article .slideshow p,
+#gallery-container .slideshow p {
+  color: #b4b4b4 !important;
+  font-size: 15px !important;
+  font-style: normal !important;
+  line-height: 18px !important;
+  margin: 3px 0 !important;
+}
+article .slideshow p.published,
+#gallery-container .slideshow p.published {
+   font-family: 'cassiabold';
+   font-size: 14px !important;
+   font-weight: normal;
+   line-height: 16px;
+}
+article .slideshow p.copyright,
+#gallery-container .slideshow p.copyright {
+  color: #8c8c8c !important;
+  font-size: 12px !important;
+  line-height: 16px;
+  font-style: normal;
+  padding: 0;
+}

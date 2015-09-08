@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.ndtv</groupId>
+		<artifactId>bundle</artifactId>
+		<version>1.2-SNAPSHOT</version>
+		<relativePath>./..</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ndtv.service</groupId>
+	<artifactId>com.ndtv.service</artifactId>
+	<version>1.2-SNAPSHOT</version>
+	<name>${companyName} ${applicationId} Service</name>
+	<packaging>bundle</packaging>
+
+	<build>
+
+		<plugins>
+			<!-- plugins to make an osgi bundle out of the jar -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${org.apache.felix.maven-bundle-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Export-Package>com.ndtv.service.*,
+                            com.brightcove.proserve.mediaapi.*,
+                            org.jsonBC;version=${project.version}
+						</Export-Package>
+						<DynamicImport-Package>*</DynamicImport-Package>
+						<Import-Package>
+							com.ndtv.framework.util.*;version=${project.version}
+						</Import-Package>
+                        <Embed-Dependency>ehcache,jPDFImagesAndText,slugify,commons-net,httpcore-osgi,httpclient-osgi;scope=compile|runtime</Embed-Dependency>
+					</instructions>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.felix</groupId>
+						<artifactId>org.osgi.core</artifactId>
+						<version>${org.apache.felix.org.osgi.core.version}</version>
+					</dependency>
+
+
+                    <dependency>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>org.apache.felix.framework</artifactId>
+                        <version>2.0.0</version>
+                        <!--<scope>provided</scope>-->
+                    </dependency>
+
+                </dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<version>1.12.0</version><!--$NO-MVN-MAN-VER$ -->
+				<executions>
+					<execution>
+						<id>generate-scr-descriptor</id>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>deploy</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.sling</groupId>
+						<artifactId>maven-sling-plugin</artifactId>
+						<version>2.1.0</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>install</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<slingUrl>http://${cq.host}:${cq.port}/system/console/install</slingUrl>
+							<usePut>false</usePut>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<dependencies>
+		<dependency>
+			<groupId>ndtv.framework</groupId>
+			<artifactId>com.ndtv.framework</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore-osgi</artifactId>
+                <version>4.1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient-osgi</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>20140107</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.0</version>
+			</dependency>
+			<dependency>
+                <groupId>org.apache.jackrabbit.vault</groupId>
+                <artifactId>org.apache.jackrabbit.vault</artifactId>
+                <version>3.1.6</version>
+            </dependency>
+	        <dependency>
+	            <groupId>commons-net</groupId>
+	            <artifactId>commons-net</artifactId>
+	            <version>3.3</version>
+	            <scope>provided</scope>
+	        </dependency>
+	        <dependency>
+		       <groupId>com.github.slugify</groupId>
+		       <artifactId>slugify</artifactId>
+		       <version>2.1.2</version>
+	       </dependency>
+	       <!-- Dependencies For ThinData News Letter-->
+	       <dependency>
+				<groupId>com.day.cq.mcm</groupId>
+				<artifactId>cq-mcm-core</artifactId>
+				<version>5.6.8</version>
+		   </dependency>
+			<dependency>
+				<groupId>com.day.cq</groupId>
+				<artifactId>cq-retriever</artifactId>
+				<version>5.6.2</version>
+			</dependency>
+			<dependency>
+                 <groupId>com.adobe.aem</groupId>
+                 <artifactId>aem-api</artifactId>
+                 <version>6.0.0.1</version>
+            </dependency>
+
+            <dependency>
+			    <groupId>groupId</groupId>
+			    <artifactId>jPDFImagesAndText</artifactId>
+			    <version>1.0</version>
+			    <scope>system</scope>
+			    <systemPath>${project.basedir}/libs/jPDFImagesAndText.jar</systemPath>
+            </dependency>
+            <dependency>
+			    <groupId>mysql</groupId>
+			    <artifactId>mysql-connector-java</artifactId>
+			    <version>5.1.6</version>
+			    <scope>system</scope>
+                <systemPath>${project.basedir}/libs/mysql-connector-java-5.1.6-bundle.jar</systemPath>
+			</dependency>
+			<dependency>
+				<groupId>com.day.commons</groupId>
+				<artifactId>day.commons.datasource.poolservice</artifactId>
+				<scope>system</scope>
+				<systemPath>${project.basedir}/libs/day.commons.datasource.poolservice-1.0.10.jar</systemPath>
+				<version>1.0.10</version>          
+            </dependency>
+			<dependency>
+			    <groupId>biz.aQute</groupId>
+			    <artifactId>bndlib</artifactId>
+			    <version>1.50.0</version>
+			</dependency>
+	        <dependency>
+	            <groupId>joda-time</groupId>
+	            <artifactId>joda-time</artifactId>
+	            <version>1.5.2</version>
+	            <scope>provided</scope>
+	        </dependency>
+            <dependency>
+			    <groupId>net.sf.ehcache</groupId>
+			    <artifactId>ehcache</artifactId>
+			    <version>2.8.0</version>
+			</dependency>
+
+	        
+	</dependencies>
+	<repositories>
+        <repository>
+            <id>adobe-public-releases</id>
+            <name>Adobe Public Repository</name>
+            <url>http://repo.adobe.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>maven-public-repo</id>
+            <name>Maven Public Repository</name>
+            <url>https://maven.java.net/content/repositories/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        
+        <repository>
+		    <id>repo</id>
+		    <releases>
+		        <enabled>true</enabled>
+		        <checksumPolicy>ignore</checksumPolicy>
+		    </releases>
+		    <snapshots>
+		        <enabled>false</enabled>
+		    </snapshots>
+		    <url>file://${project.basedir}/libs</url>
+		</repository>
+        
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>adobe-public-releases</id>
+            <name>Adobe Public Repository</name>
+            <url>http://repo.adobe.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>maven-public-repo</id>
+            <name>Maven Public Repository</name>
+            <url>https://maven.java.net/content/repositories/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
