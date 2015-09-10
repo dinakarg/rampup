@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ndtv.model.HelloWorldBean;
 
-
-
 public class HelloWorldAction extends BaseAction {
 
     private Logger log =  LoggerFactory.getLogger(HelloWorldAction.class);
@@ -35,5 +33,5 @@ public class HelloWorldAction extends BaseAction {
 
         return helloWorldBean;
     }
-
+     
 }
