@@ -1,6 +1,6 @@
 <%
 %>
-<%@include file="/apps/training/components/page/global.jsp"%>
+<%@include file="/apps/ndtv/global/global.jsp"%>
 <%--
   Copyright 1997-2009 Day Management AG
   Barfuesserplatz 6, 4001 Basel, Switzerland
