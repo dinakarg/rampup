@@ -1,47 +1,53 @@
-/**
- * Copyright (C) 2014 Virtusa Corporation.
- * This file is proprietary and part of Virtusa LaunchPad.
- */
 package com.ndtv.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.adobe.cq.sightly.WCMUse;
 import com.ndtv.model.TopStoryBean;
 
 /**
- * The Class TopStoryAction.
- * 
  * @author SRASHMI
+ * 
  */
-public class TopStoryAction extends BaseAction {
-
-    /** The Constant TITLE1. */
-    private static final String TITLE1 = "title";
+public class TopNewsComponent extends WCMUse {
 
     /** The Constant NEWS2. */
     private static final String NEWS2 = "news";
+
+    /** The Constant TITLE. */
+    private static final String TITLE = "title";
     /** The log. */
     private static final Logger LOG = LoggerFactory
-            .getLogger(TopStoryAction.class);
+            .getLogger(TopNewsComponent.class);
+    /** The top stories bean. */
+    private TopStoryBean topStoriesBean = null;
 
     /**
-     * Top stories.
+     * This method calls from component to get the bean properties.
      * 
-     * @return the top story bean
+     * @throws Exception
+     *             exception.
+     * 
+     ** 
      */
-    public TopStoryBean topStories() {
-        TopStoryBean topStoriesBean = new TopStoryBean();
-        Node node = getCurrentNode();
+    @Override
+    public void activate() throws Exception {
+        // TODO Auto-generated method stub
+        Node node = getResource().adaptTo(Node.class);
+        topStoriesBean = new TopStoryBean();
         if (null != node) {
             try {
-                if (node.hasProperty(TITLE1)) {
-                    topStoriesBean.setTitle(node.getProperty(TITLE1)
-                            .getString());
+                if (node.hasProperty(TITLE)) {
+                    topStoriesBean
+                            .setTitle(node.getProperty(TITLE).getString());
                 }
             } catch (RepositoryException e) {
                 LOG.error(
@@ -49,11 +55,12 @@ public class TopStoryAction extends BaseAction {
                                 + e.getMessage(), e);
             }
             try {
-                Value[] news = {};
                 List<String> newsList = new ArrayList<String>();
                 if (node.hasProperty(NEWS2)) {
+                    Value[] news = {};
                     if (node.getProperty(NEWS2).isMultiple()) {
                         news = node.getProperty(NEWS2).getValues();
+
                     } else {
                         newsList.add(node.getProperty("news").getString());
                     }
@@ -68,6 +75,22 @@ public class TopStoryAction extends BaseAction {
                                 + e.getMessage(), e);
             }
         }
-        return topStoriesBean;
     }
+
+    /**
+     * @return the topStoriesBean
+     */
+    public TopStoryBean getTopStoriesBean() {
+        return this.topStoriesBean;
+    }
+
+    /**
+     * Gets the top story bean.
+     * 
+     * @return the top story bean
+     */
+    /*
+     * public TopStoryBean getTopStoryBean() { return this.topStoriesBean; }
+     */
+
 }
