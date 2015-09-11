@@ -39,7 +39,7 @@ public class HeroSightly extends WCMUse {
                 log.info(heroBean.getPath());
             }
         } catch (RepositoryException e) {
-            log.error("RepositoryException ", e);
+            log.error("RepositoryException " + e.getMessage(), e);
         }
     }
 

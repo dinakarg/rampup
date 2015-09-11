@@ -22,6 +22,7 @@ import com.ndtv.model.HeroBean;
  */
 public class HeroAction extends BaseAction {
 
+
     /** The log. */
     private Logger log = LoggerFactory.getLogger(HeroAction.class);
 
