@@ -19,20 +19,27 @@ import com.ndtv.util.CommonUtils;
  * 
  */
 public class HeroAction extends BaseAction {
+    /** The Constant HERO_TITLE. */
+    public static final String HERO_TITLE = "title";
+    /** The Constant HERO_PATH. */
+    public static final String HERO_PATH = "path";
+    /** The Constant EMPTY_STRING. */
+    
     /**
      * Hero.
      * 
      * @return the hero bean
      */
+    
     public final HeroBean hero() {
         HeroBean heroBean = new HeroBean();
         Node node = getCurrentNode();
 
         if (null != node) {
             heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
-                    .getNodePropertyValue(node, CommonUtils.HERO_TITLE)));
+                    .getNodePropertyValue(node, HERO_TITLE)));
             heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
-                    .getNodePropertyValue(node, CommonUtils.HERO_PATH)));
+                    .getNodePropertyValue(node, HERO_PATH)));
         }
         // try {
         // if (node.hasProperty(CommonUtils.HERO_TITLE)
