@@ -6,6 +6,7 @@
     allowedPaths="[/content(/.*)?]"
     ranking="{Long}1">
     <jcr:content
+        cq:designPath="/etc/designs/ndtv"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="/apps/ndtv/components/page/homePage"/>
 </jcr:root>
