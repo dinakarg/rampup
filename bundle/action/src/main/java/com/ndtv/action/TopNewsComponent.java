@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.sightly.WCMUse;
 import com.ndtv.model.TopStoryBean;
+import com.ndtv.util.CommonUtils;
 
 /**
  * @author SRASHMI
@@ -40,35 +42,33 @@ public class TopNewsComponent extends WCMUse {
      */
     @Override
     public void activate() throws Exception {
-        // TODO Auto-generated method stub
+
         Node node = getResource().adaptTo(Node.class);
         topStoriesBean = new TopStoryBean();
         if (null != node) {
+
+            topStoriesBean.setTitle(CommonUtils.getNodePropertyValue(node,
+                    TITLE));
+
             try {
-                if (node.hasProperty(TITLE)) {
-                    topStoriesBean
-                            .setTitle(node.getProperty(TITLE).getString());
+                if (node.hasProperty(NEWS2)) {
+
+                    if (node.getProperty(NEWS2).isMultiple()) {
+
+                        topStoriesBean.setNews(CommonUtils
+                                .getNodePropertyValues(node, NEWS2));
+
+                    } else {
+                        List<String> topStories = new ArrayList<String>();
+                        topStories.add(CommonUtils.getNodePropertyValue(node,
+                                NEWS2));
+                        topStoriesBean.setNews(topStories);
+                    }
                 }
-            } catch (RepositoryException e) {
+            } catch (PathNotFoundException e) {
                 LOG.error(
                         "Error while retrieving the property value from the node"
                                 + e.getMessage(), e);
-            }
-            try {
-                List<String> newsList = new ArrayList<String>();
-                if (node.hasProperty(NEWS2)) {
-                    Value[] news = {};
-                    if (node.getProperty(NEWS2).isMultiple()) {
-                        news = node.getProperty(NEWS2).getValues();
-
-                    } else {
-                        newsList.add(node.getProperty("news").getString());
-                    }
-                    for (Value str : news) {
-                        newsList.add(str.toString());
-                    }
-                    topStoriesBean.setNews(newsList);
-                }
             } catch (RepositoryException e) {
                 LOG.error(
                         "Error while retrieving the property value from the node"
@@ -88,9 +88,6 @@ public class TopNewsComponent extends WCMUse {
      * Gets the top story bean.
      * 
      * @return the top story bean
-     */
-    /*
-     * public TopStoryBean getTopStoryBean() { return this.topStoriesBean; }
      */
 
 }

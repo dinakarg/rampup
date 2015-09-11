@@ -17,7 +17,7 @@
   scenarios ("404", eg. logged in, but does not exist in repository).
 
 --%>
-<%@include file="/apps/tc/global/global.jsp"%>
+<%@include file="/apps/ndtv/global/global.jsp"%>
 <%@ page isErrorPage="true" %>
 <%@ page session="false" %>
 <c:set var="homePagePath" scope = "request" value = "${func:getHomePagePath(currentPage)}"/>
