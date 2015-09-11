@@ -7,11 +7,13 @@ package com.ndtv.action;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ndtv.model.TopStoryBean;
+import com.ndtv.util.CommonUtils;
 
 /**
  * The Class TopStoryAction.
@@ -21,7 +23,7 @@ import com.ndtv.model.TopStoryBean;
 public class TopStoryAction extends BaseAction {
 
     /** The Constant TITLE1. */
-    private static final String TITLE1 = "title";
+    private static final String TITLE = "title";
 
     /** The Constant NEWS2. */
     private static final String NEWS2 = "news";
@@ -38,30 +40,28 @@ public class TopStoryAction extends BaseAction {
         TopStoryBean topStoriesBean = new TopStoryBean();
         Node node = getCurrentNode();
         if (null != node) {
+            topStoriesBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(node, TITLE))); // null
+
             try {
-                if (node.hasProperty(TITLE1)) {
-                    topStoriesBean.setTitle(node.getProperty(TITLE1)
-                            .getString());
+                if (node.hasProperty(NEWS2)) {
+
+                    if (node.getProperty(NEWS2).isMultiple()) {
+
+                        topStoriesBean.setNews(CommonUtils
+                                .getNodePropertyValues(node, NEWS2));
+
+                    } else {
+                        List<String> topStories = new ArrayList<String>();
+                        topStories.add(CommonUtils.getNodePropertyValue(node,
+                                NEWS2));
+                        topStoriesBean.setNews(topStories);
+                    }
                 }
-            } catch (RepositoryException e) {
+            } catch (PathNotFoundException e) {
                 LOG.error(
                         "Error while retrieving the property value from the node"
                                 + e.getMessage(), e);
-            }
-            try {
-                Value[] news = {};
-                List<String> newsList = new ArrayList<String>();
-                if (node.hasProperty(NEWS2)) {
-                    if (node.getProperty(NEWS2).isMultiple()) {
-                        news = node.getProperty(NEWS2).getValues();
-                    } else {
-                        newsList.add(node.getProperty("news").getString());
-                    }
-                    for (Value str : news) {
-                        newsList.add(str.toString());
-                    }
-                    topStoriesBean.setNews(newsList);
-                }
             } catch (RepositoryException e) {
                 LOG.error(
                         "Error while retrieving the property value from the node"
