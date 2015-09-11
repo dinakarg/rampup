@@ -9,7 +9,7 @@ import java.util.List;
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ndtv.model.TopStoryBean;
@@ -70,4 +70,4 @@ public class TopStoryAction extends BaseAction {
         }
         return topStoriesBean;
     }
-}
+}   
