@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.ndtv.util;
 
 import java.util.List;
@@ -14,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The Class CommonUtils. It include reusable methods.
- * 
+ *
  * @author GDINAKAR
  */
 public class CommonUtils {
@@ -25,10 +22,15 @@ public class CommonUtils {
     /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory
             .getLogger(CommonUtils.class);
+    /**
+     * Instantiates a new common utils.
+     */
+    protected CommonUtils() {
+    }
 
     /**
      * Gets the node property value.
-     * 
+     *
      * @param node
      *            the node
      * @param propertyName
@@ -51,6 +53,13 @@ public class CommonUtils {
 
     }
 
+    /**
+     * Gets the node property values.
+     *
+     * @param node the node
+     * @param propertyName the property name
+     * @return the node property values
+     */
     public static List<String> getNodePropertyValues(final Node node,
             final String propertyName) {
         Value[] propertyValues = {};
@@ -75,7 +84,7 @@ public class CommonUtils {
 
     /**
      * Return empty if null.
-     * 
+     *
      * @param propertyValue
      *            the property value
      * @return the string
