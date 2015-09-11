@@ -14,37 +14,48 @@ import org.slf4j.LoggerFactory;
 import com.ndtv.model.TopStoryBean;
 
 /**
- * @author SRASHMI
+ * The Class TopStoryAction.
  * 
+ * @author SRASHMI
  */
 public class TopStoryAction extends BaseAction {
+
+    /** The Constant TITLE1. */
+    private static final String TITLE1 = "title";
+
+    /** The Constant NEWS2. */
+    private static final String NEWS2 = "news";
     /** The log. */
-    private Logger log = LoggerFactory.getLogger(TopStoryAction.class);
+    private static final Logger LOG = LoggerFactory
+            .getLogger(TopStoryAction.class);
 
     /**
      * Top stories.
      * 
      * @return the top story bean
      */
-    public  TopStoryBean topStories() {
+    public TopStoryBean topStories() {
         TopStoryBean topStoriesBean = new TopStoryBean();
         Node node = getCurrentNode();
         if (null != node) {
             try {
-                if (node.hasProperty("title")) {
-                    topStoriesBean.setTitle(node.getProperty("title")
+                if (node.hasProperty(TITLE1)) {
+                    topStoriesBean.setTitle(node.getProperty(TITLE1)
                             .getString());
                 }
             } catch (RepositoryException e) {
-                log.error("RepositoryException ", e);
+                LOG.error(
+                        "Error while retrieving the property value from the node"
+                                + e.getMessage(), e);
             }
             try {
                 Value[] news = {};
                 List<String> newsList = new ArrayList<String>();
-                if (node.hasProperty("news")) {
-                    if (node.getProperty("news").isMultiple()) {
-                        news = node.getProperty("news").getValues();
-                        System.out.println(news[0]);
+                if (node.hasProperty(NEWS2)) {
+                    if (node.getProperty(NEWS2).isMultiple()) {
+                        news = node.getProperty(NEWS2).getValues();
+                    } else {
+                        newsList.add(node.getProperty("news").getString());
                     }
                     for (Value str : news) {
                         newsList.add(str.toString());
@@ -52,7 +63,9 @@ public class TopStoryAction extends BaseAction {
                     topStoriesBean.setNews(newsList);
                 }
             } catch (RepositoryException e) {
-                log.error("RepositoryException ", e);
+                LOG.error(
+                        "Error while retrieving the property value from the node"
+                                + e.getMessage(), e);
             }
         }
         return topStoriesBean;

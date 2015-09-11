@@ -20,7 +20,7 @@ public class TopStoryBean implements Serializable {
      * 
      * @return the news
      */
-    public  List<String> getNews() {
+    public List<String> getNews() {
         return news;
     }
 
@@ -30,7 +30,7 @@ public class TopStoryBean implements Serializable {
      * @param news1
      *            the new news
      */
-    public  void setNews(List<String> news1) {
+    public void setNews(List<String> news1) {
         this.news = news1;
     }
 
@@ -49,12 +49,7 @@ public class TopStoryBean implements Serializable {
      * @param title1
      *            the new title
      */
-    public  void setTitle(String title1) {
+    public void setTitle(String title1) {
         this.title = title1;
     }
-    /**
-     * Gets the serialversionuid. s
-     * 
-     * @return the serialversionuid
-     */
-}
+    }

@@ -17,9 +17,16 @@ import com.ndtv.model.TopStoryBean;
  * @author SRASHMI
  * 
  */
-public class SightlyNewsAction extends WCMUse {
+public class TopNewsComponent extends WCMUse {
+
+    /** The Constant NEWS2. */
+    private static final String NEWS2 = "news";
+
+    /** The Constant TITLE. */
+    private static final String TITLE = "title";
     /** The log. */
-    private Logger log = LoggerFactory.getLogger(SightlyNewsAction.class);
+    private static final Logger LOG = LoggerFactory
+            .getLogger(TopNewsComponent.class);
     /** The top stories bean. */
     private TopStoryBean topStoriesBean = null;
 
@@ -38,20 +45,24 @@ public class SightlyNewsAction extends WCMUse {
         topStoriesBean = new TopStoryBean();
         if (null != node) {
             try {
-                if (node.hasProperty("title")) {
-                    topStoriesBean.setTitle(node.getProperty("title")
-                            .getString());
+                if (node.hasProperty(TITLE)) {
+                    topStoriesBean
+                            .setTitle(node.getProperty(TITLE).getString());
                 }
             } catch (RepositoryException e) {
-                log.error("RepositoryException ", e);
+                LOG.error(
+                        "Error while retrieving the property value from the node"
+                                + e.getMessage(), e);
             }
             try {
                 List<String> newsList = new ArrayList<String>();
-                if (node.hasProperty("news")) {
+                if (node.hasProperty(NEWS2)) {
                     Value[] news = {};
-                    if (node.getProperty("news").isMultiple()) {
-                        news = node.getProperty("news").getValues();
-                        System.out.println(news[0]);
+                    if (node.getProperty(NEWS2).isMultiple()) {
+                        news = node.getProperty(NEWS2).getValues();
+
+                    } else {
+                        newsList.add(node.getProperty("news").getString());
                     }
                     for (Value str : news) {
                         newsList.add(str.toString());
@@ -59,9 +70,18 @@ public class SightlyNewsAction extends WCMUse {
                     topStoriesBean.setNews(newsList);
                 }
             } catch (RepositoryException e) {
-                log.error("RepositoryException ", e);
+                LOG.error(
+                        "Error while retrieving the property value from the node"
+                                + e.getMessage(), e);
             }
         }
+    }
+
+    /**
+     * @return the topStoriesBean
+     */
+    public TopStoryBean getTopStoriesBean() {
+        return this.topStoriesBean;
     }
 
     /**
@@ -69,7 +89,8 @@ public class SightlyNewsAction extends WCMUse {
      * 
      * @return the top story bean
      */
-    public TopStoryBean getTopStoryBean() {
-        return this.topStoriesBean;
-    }
+    /*
+     * public TopStoryBean getTopStoryBean() { return this.topStoriesBean; }
+     */
+
 }

@@ -1,22 +1,16 @@
 This is Top-Stories component using sightly......
 
-<div data-sly-use.topStories="com.ndtv.action.SightlyNewsAction" data-sly-test="${topStories}">
+<div data-sly-use.topNews="com.ndtv.action.TopNewsComponent" data-sly-test="${topNews}">
 
-<div class="hmpage_llhs" xmlns="http://www.w3.org/1999/xhtml"><div class="widgetheader_red">
-<span><a href="#" shape="rect"><span>${topStories.TopStoryBean.title}</span></a></span></div>
-<div class="storylist_nothumb top-stories-68" data-tb-region="top-stories ">
-
-
- <ul  data-sly-list="${ topStories.TopStoryBean.news }">
+<span><a href="#" shape="rect"><span>${topNews.topStoriesBean.title}</span></a></span>
+<ul  data-sly-list="${topNews.topStoriesBean.news }">
 <li data-tb-region-item="data-tb-region-item">
 <div class="description">
 <h2>
- <a class="item-title" href="#" onclick="_gaq.push(['_trackEvent', 'top-stories', 'Clicked', 'Sensex Slumps Over 600 Points ']);" shape="rect">${item}</a> 
+ <a class="item-title" href="#" >${item}</a> 
 
- </h2>
+</h2>
  </div>
  </li>
  </ul>
-
- </div>
 </div>
