@@ -25,7 +25,7 @@ public class HeroSightly extends WCMUse {
         Node node = getResource().adaptTo(Node.class);
         heroBean = new HeroBean();
         heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
-                .getNodePropertyValue(node,HeroAction.HERO_TITLE)));
+                .getNodePropertyValue(node, HeroAction.HERO_TITLE)));
         heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
                 .getNodePropertyValue(node, HeroAction.HERO_PATH)));
         // try {
