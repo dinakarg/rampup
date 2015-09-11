@@ -7,15 +7,16 @@ import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.sightly.WCMUse;
 import com.ndtv.model.TopnavBean;
+import com.ndtv.util.CommonUtils;
 
 /**
  * The Class TopnavSightly.
  */
-public class TopnavSightly extends WCMUse {
+public class TopnavComponent extends WCMUse {
 
     /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory
-            .getLogger(TopnavSightly.class);
+            .getLogger(TopnavComponent.class);
 
     /** The topnav bean. */
     private TopnavBean topnavBean = null;
@@ -30,34 +31,34 @@ public class TopnavSightly extends WCMUse {
         Node currentNode = getResource().adaptTo(Node.class);
 
         topnavBean = new TopnavBean();
-        if (currentNode.hasProperty("title1")) {
-            topnavBean.setTitle1(currentNode.getProperty("title1").getString());
+if (currentNode != null) {
+            topnavBean.setTitle1(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.TITLE1)));
 
             LOG.info(topnavBean.getTitle1());
 
-        }
-        if (currentNode.hasProperty("title2")) {
-            topnavBean.setTitle2(currentNode.getProperty("title2").getString());
+
+            topnavBean.setTitle2(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.TITLE2)));
             LOG.info(topnavBean.getTitle2());
-        }
-        if (currentNode.hasProperty("title3")) {
-            topnavBean.setTitle3(currentNode.getProperty("title3").getString());
+
+            topnavBean.setTitle3(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.TITLE3)));
             LOG.info(topnavBean.getTitle3());
-        }
-        if (currentNode.hasProperty("url1")) {
-            topnavBean.setUrl1(currentNode.getProperty("url1").getString());
+
+            topnavBean.setUrl1(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.URL1)));
             LOG.info(topnavBean.getUrl1());
-        }
-        if (currentNode.hasProperty("url2")) {
-            topnavBean.setUrl2(currentNode.getProperty("url2").getString());
+
+            topnavBean.setUrl2(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.URL2)));
             LOG.info(topnavBean.getUrl2());
-        }
-        if (currentNode.hasProperty("url3")) {
-            topnavBean.setUrl3(currentNode.getProperty("url3").getString());
+
+            topnavBean.setUrl3(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(currentNode, TopnavAction.URL3)));
             LOG.info(topnavBean.getUrl3());
         }
     }
-
     /**
      * Gets the topnav bean.
      * @return the topnav bean
