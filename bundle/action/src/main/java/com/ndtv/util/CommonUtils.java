@@ -62,10 +62,9 @@ public class CommonUtils {
      */
     public static List<String> getNodePropertyValues(final Node node,
             final String propertyName) {
-        Value[] propertyValues = {};
         List<String> listOfValues = null;
         try {
-            propertyValues = node.getProperty(propertyName).getValues();
+            Value[] propertyValues = node.getProperty(propertyName).getValues();
             if (propertyValues.length > 0) {
                 listOfValues = new ArrayList<String>();
                 for (Value str : propertyValues) {
