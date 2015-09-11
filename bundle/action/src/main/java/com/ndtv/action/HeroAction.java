@@ -8,11 +8,9 @@
 package com.ndtv.action;
 
 import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.ndtv.model.HeroBean;
+import com.ndtv.util.CommonUtils;
+
 
 /**
  * HeroAction.
@@ -21,11 +19,6 @@ import com.ndtv.model.HeroBean;
  * 
  */
 public class HeroAction extends BaseAction {
-
-
-    /** The log. */
-    private Logger log = LoggerFactory.getLogger(HeroAction.class);
-
     /**
      * Hero.
      * 
@@ -34,16 +27,25 @@ public class HeroAction extends BaseAction {
     public final HeroBean hero() {
         HeroBean heroBean = new HeroBean();
         Node node = getCurrentNode();
+
         if (null != node) {
-            try {
-                if (node.hasProperty("title") && node.hasProperty("path")) {
-                    heroBean.setTitle(node.getProperty("title").getString());
-                    heroBean.setPath(node.getProperty("path").getString());
-                }
-            } catch (RepositoryException e) {
-                log.error("RepositoryException ", e);
-            }
+            heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(node, CommonUtils.HERO_TITLE)));
+            heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
+                    .getNodePropertyValue(node, CommonUtils.HERO_PATH)));
         }
+        // try {
+        // if (node.hasProperty(CommonUtils.HERO_TITLE)
+        // && node.hasProperty(CommonUtils.HERO_PATH)) {
+        // heroBean.setTitle(node.getProperty(CommonUtils.HERO_TITLE)
+        // .getString());
+        // heroBean.setPath(node.getProperty(CommonUtils.HERO_PATH)
+        // .getString());
+        // }
+        // } catch (RepositoryException e) {
+        // log.error("RepositoryException ", e);
+        // }
+        // }
         return heroBean;
     }
 }

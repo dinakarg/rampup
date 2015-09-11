@@ -2,19 +2,14 @@ package com.ndtv.action;
 
 import com.adobe.cq.sightly.WCMUse;
 import com.ndtv.model.HeroBean;
+import com.ndtv.util.CommonUtils;
 
 import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class HeroTextComponent.
  */
 public class HeroSightly extends WCMUse {
-    /** The hero text bean. */
-    private Logger log = LoggerFactory.getLogger(HeroAction.class);
 
     /** The hero bean. */
     private HeroBean heroBean = null;
@@ -27,20 +22,26 @@ public class HeroSightly extends WCMUse {
      */
     @Override
     public final void activate() throws Exception {
-        Node currentNode = getResource().adaptTo(Node.class);
+        Node node = getResource().adaptTo(Node.class);
         heroBean = new HeroBean();
-        try {
-            if (currentNode.hasProperty("title")) {
-                heroBean.setTitle(currentNode.getProperty("title").getString());
-                log.info(heroBean.getTitle());
-            }
-            if (currentNode.hasProperty("path")) {
-                heroBean.setPath(currentNode.getProperty("path").getString());
-                log.info(heroBean.getPath());
-            }
-        } catch (RepositoryException e) {
-            log.error("RepositoryException " + e.getMessage(), e);
-        }
+        heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
+                .getNodePropertyValue(node, CommonUtils.HERO_TITLE)));
+        heroBean.setTitle(CommonUtils.returnEmptyIfNull(CommonUtils
+                .getNodePropertyValue(node, CommonUtils.HERO_PATH)));
+        // try {
+        // if (currentNode.hasProperty(CommonUtils.HERO_TITLE)) {
+        // heroBean.setTitle(currentNode.getProperty(
+        // CommonUtils.HERO_TITLE).getString());
+        // log.info(heroBean.getTitle());
+        // }
+        // if (currentNode.hasProperty(CommonUtils.HERO_PATH)) {
+        // heroBean.setPath(currentNode.getProperty(CommonUtils.HERO_PATH)
+        // .getString());
+        // log.info(heroBean.getPath());
+        // }
+        // } catch (RepositoryException e) {
+        // log.error("RepositoryException " + e.getMessage(), e);
+        // }
     }
 
     /**
