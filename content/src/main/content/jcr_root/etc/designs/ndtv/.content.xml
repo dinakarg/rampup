@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2015-09-11T13:13:43.879+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/wcm/core/templates/designpage"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="ndtv"
+        sling:resourceType="wcm/core/components/designer">
+        <homePage jcr:primaryType="nt:unstructured">
+            <header
+                jcr:lastModified="{Date}2015-09-11T13:13:43.878+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                components="group:NDTV">
+                <section jcr:primaryType="nt:unstructured"/>
+            </header>
+        </homePage>
+    </jcr:content>
+</jcr:root>
