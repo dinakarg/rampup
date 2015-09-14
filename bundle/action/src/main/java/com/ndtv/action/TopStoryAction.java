@@ -23,10 +23,10 @@ import com.ndtv.util.CommonUtils;
 public class TopStoryAction extends BaseAction {
 
     /** The Constant TITLE1. */
-    private static final String TITLE = "title";
+    public static final String TITLE = "title";
 
     /** The Constant NEWS2. */
-    private static final String NEWS2 = "news";
+    public static final String NEWS = "news";
     /** The log. */
     private static final Logger LOG = LoggerFactory
             .getLogger(TopStoryAction.class);
@@ -44,17 +44,17 @@ public class TopStoryAction extends BaseAction {
                     .getNodePropertyValue(node, TITLE))); // null
 
             try {
-                if (node.hasProperty(NEWS2)) {
+                if (node.hasProperty(NEWS)) {
 
-                    if (node.getProperty(NEWS2).isMultiple()) {
+                    if (node.getProperty(NEWS).isMultiple()) {
 
                         topStoriesBean.setNews(CommonUtils
-                                .getNodePropertyValues(node, NEWS2));
+                                .getNodePropertyValues(node, NEWS));
 
                     } else {
                         List<String> topStories = new ArrayList<String>();
                         topStories.add(CommonUtils.getNodePropertyValue(node,
-                                NEWS2));
+                                NEWS));
                         topStoriesBean.setNews(topStories);
                     }
                 }
@@ -70,4 +70,4 @@ public class TopStoryAction extends BaseAction {
         }
         return topStoriesBean;
     }
-}   
+}

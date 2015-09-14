@@ -20,11 +20,6 @@ import com.ndtv.util.CommonUtils;
  */
 public class TopNewsComponent extends WCMUse {
 
-    /** The Constant NEWS2. */
-    private static final String NEWS2 = "news";
-
-    /** The Constant TITLE. */
-    private static final String TITLE = "title";
     /** The log. */
     private static final Logger LOG = LoggerFactory
             .getLogger(TopNewsComponent.class);
@@ -47,20 +42,21 @@ public class TopNewsComponent extends WCMUse {
         if (null != node) {
 
             topStoriesBean.setTitle(CommonUtils.getNodePropertyValue(node,
-                    TITLE));
+                    TopStoryAction.TITLE));
 
             try {
-                if (node.hasProperty(NEWS2)) {
+                if (node.hasProperty(TopStoryAction.NEWS)) {
 
-                    if (node.getProperty(NEWS2).isMultiple()) {
+                    if (node.getProperty(TopStoryAction.NEWS).isMultiple()) {
 
                         topStoriesBean.setNews(CommonUtils
-                                .getNodePropertyValues(node, NEWS2));
+                                .getNodePropertyValues(node,
+                                        TopStoryAction.NEWS));
 
                     } else {
                         List<String> topStories = new ArrayList<String>();
                         topStories.add(CommonUtils.getNodePropertyValue(node,
-                                NEWS2));
+                                TopStoryAction.NEWS));
                         topStoriesBean.setNews(topStories);
                     }
                 }
