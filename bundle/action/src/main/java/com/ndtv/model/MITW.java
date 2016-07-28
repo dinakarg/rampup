@@ -8,7 +8,7 @@ package com.ndtv.model;
 
 import java.io.Serializable;
 
-public class HelloWorldBean implements Serializable {
+public class MITW implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
